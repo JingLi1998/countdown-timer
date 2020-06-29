@@ -1,14 +1,34 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
+
+import { ThemeProvider } from "styled-components";
+import { createGlobalStyle } from "styled-components";
+
+const theme = {
+  green: "#1b998b",
+  pink: "#FDECF4",
+  black: "#2d3047",
+  yellow: "#fffd82",
+  orange: "#ff9b71",
+};
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: ${theme.pink};
+  }
+`;
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <App />
+    </ThemeProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
