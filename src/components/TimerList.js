@@ -3,18 +3,36 @@ import styled from "styled-components";
 
 import Card from "./Card";
 import Timer from "./Timer";
+import breakpoints from "../utils/breakpoints";
 
 const StyledCard = styled(Card)`
-  height: 100px;
+  /* width: 100%; */
 `;
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-gap: 1rem;
+
+  @media ${breakpoints.md} {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media ${breakpoints.lg} {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @media ${breakpoints.xl} {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 `;
 
-const TimerList = ({ timers, currentDateTime, onRemoveTimer }) => {
+const TimerList = ({
+  timers,
+  currentDateTime,
+  onRemoveTimer,
+  onCompleteTimer,
+}) => {
   return (
     <Grid>
       {timers.length ? (
@@ -25,6 +43,7 @@ const TimerList = ({ timers, currentDateTime, onRemoveTimer }) => {
             index={index}
             currentDateTime={currentDateTime}
             onRemoveTimer={onRemoveTimer}
+            onCompleteTimer={onCompleteTimer}
           />
         ))
       ) : (

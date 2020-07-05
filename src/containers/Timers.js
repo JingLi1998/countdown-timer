@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, Fragment } from "react";
 import moment from "moment";
 
 import Navbar from "../components/Navbar";
@@ -35,6 +35,15 @@ const Timers = () => {
     [timers]
   );
 
+  const completeTimerHandler = useCallback(
+    (index) => {
+      const updatedTimers = [...timers];
+      updatedTimers[index].complete = true;
+      setTimers(updatedTimers);
+    },
+    [timers]
+  );
+
   const removeTimerHandler = useCallback(
     (removeIndex) => {
       setTimers(timers.filter((_, index) => index !== removeIndex));
@@ -43,7 +52,7 @@ const Timers = () => {
   );
 
   return (
-    <div>
+    <Fragment>
       <Navbar />
       <Hero>
         <Clock currentDateTime={currentDateTime} />
@@ -52,11 +61,12 @@ const Timers = () => {
       <Container>
         <TimerList
           currentDateTime={currentDateTime}
-          timers={timers}
           onRemoveTimer={removeTimerHandler}
+          onCompleteTimer={completeTimerHandler}
+          timers={timers}
         />
       </Container>
-    </div>
+    </Fragment>
   );
 };
 

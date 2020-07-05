@@ -1,9 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
+import breakpoints from "../utils/breakpoints";
+
 const ContainerWrapper = styled.div`
-  padding: 4rem 10rem;
-  background-color: ${(props) => props.theme.pink};
+  padding: 2rem 1rem;
+
+  @media ${breakpoints.md} {
+    padding: 4rem 2rem;
+  }
 `;
 
 const Container = (props) => {

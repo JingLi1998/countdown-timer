@@ -18,6 +18,11 @@ const theme = {
 const GlobalStyle = createGlobalStyle`
   body {
     background-color: ${theme.pink};
+    line-height: 1.5;
+  }
+
+  * {
+    box-sizing: border-box
   }
 `;
 
